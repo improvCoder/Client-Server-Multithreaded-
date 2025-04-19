@@ -34,6 +34,7 @@ class Server {
 				// This thread will handle the client
 				// separately
 				new Thread(clientSock).start();
+				
 			}
 		}
 		catch (IOException e) {
@@ -76,7 +77,7 @@ class Server {
 					new InputStreamReader(
 						clientSocket.getInputStream()));
 
-				String line;
+			String line;
 				while ((line = in.readLine()) != null) {
 
 					// writing the received message from
@@ -84,7 +85,8 @@ class Server {
 					System.out.printf(
 						" Sent from the client: %s\n",
 						line);
-					out.println(line);
+					out.println(line+":ThreadID:"+Thread.currentThread().getId());
+					
 				}
 			}
 			catch (IOException e) {
